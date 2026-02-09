@@ -1,0 +1,100 @@
+/**
+ * OAuth Button Styles
+ */
+
+.oauth-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.oauth-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-subtle);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.oauth-button:hover:not(:disabled) {
+  background: var(--bg-card-hover);
+  border-color: var(--border-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.oauth-button:hover:not(:disabled)::before {
+  opacity: 1;
+}
+
+.oauth-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.oauth-button:disabled {
+  opacity: 0.5;
+}
+
+.oauth-button__icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.oauth-button__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.oauth-button__text {
+  position: relative;
+  z-index: 1;
+}
+
+/* Provider-specific hover states */
+.oauth-button--google:hover:not(:disabled) {
+  border-color: rgba(66, 133, 244, 0.5);
+  box-shadow: 0 0 20px rgba(66, 133, 244, 0.2);
+}
+
+.oauth-button--github:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.oauth-button--azure:hover:not(:disabled) {
+  border-color: rgba(0, 166, 240, 0.5);
+  box-shadow: 0 0 20px rgba(0, 166, 240, 0.2);
+}
+
+/* Loading state animation */
+.oauth-button[aria-busy="true"] .oauth-button__icon {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}

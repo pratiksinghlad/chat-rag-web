@@ -1,0 +1,195 @@
+/**
+ * User Card Styles
+ */
+
+.user-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-xl);
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-xl);
+}
+
+.user-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+}
+
+.user-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  margin-bottom: var(--spacing-lg);
+}
+
+.user-card__avatar-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.user-card__avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--bg-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+.user-card__avatar-fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  color: white;
+  border: 4px solid var(--bg-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+.user-card__avatar-fallback--hidden {
+  display: none;
+}
+
+.user-card__verified-badge {
+  position: absolute;
+  right: calc(50% - 55px);
+  bottom: 0;
+  width: 28px;
+  height: 28px;
+  color: var(--color-success);
+  background: var(--bg-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-card__verified-badge svg {
+  width: 24px;
+  height: 24px;
+}
+
+.user-card__info {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.user-card__name {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+  word-break: break-word;
+}
+
+.user-card__email {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  word-break: break-all;
+}
+
+.user-card__icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.user-card__provider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-md);
+}
+
+.user-card__provider-label {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.user-card__provider-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-primary-300);
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: var(--radius-full);
+}
+
+.user-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-secondary);
+}
+
+.user-card__meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-sm);
+}
+
+.user-card__meta-label {
+  color: var(--text-tertiary);
+}
+
+.user-card__meta-value {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (min-width: 640px) {
+  .user-card {
+    padding: var(--spacing-2xl);
+  }
+  
+  .user-card__avatar-container {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .user-card__verified-badge {
+    right: calc(50% - 65px);
+    width: 32px;
+    height: 32px;
+  }
+  
+  .user-card__verified-badge svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .user-card__name {
+    font-size: var(--font-size-2xl);
+  }
+}
