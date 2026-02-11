@@ -4,6 +4,7 @@ import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/chat-rag-web/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -15,6 +16,7 @@ export default defineConfig({
     strictPort: true,
   },
   build: {
+    outDir: "build",
     sourcemap: false,
     rollupOptions: {
       output: {
@@ -24,5 +26,10 @@ export default defineConfig({
         },
       },
     },
+    chunkSizeWarningLimit: 600,
+    minify: true,
+    cssCodeSplit: true,
+    target: "es2022",
+    reportCompressedSize: false,
   },
 })

@@ -4,7 +4,7 @@
  * Displays animated loading indicator with optional loading message.
  */
 
-import "@/styles/LoadingSpinner.css";
+import { Spinner, VStack, Text, Center } from "@chakra-ui/react";
 
 interface LoadingSpinnerProps {
   /** Optional message to display below spinner */
@@ -17,16 +17,25 @@ export function LoadingSpinner({
   message = "Loading...",
   size = "medium",
 }: LoadingSpinnerProps) {
+  const chakraSize = size === "small" ? "sm" : size === "medium" ? "md" : "xl";
+
   return (
-    <div className="loading-spinner-container" role="status" aria-live="polite">
-      <div className={`loading-spinner loading-spinner--${size}`}>
-        <div className="loading-spinner__ring"></div>
-        <div className="loading-spinner__ring"></div>
-        <div className="loading-spinner__ring"></div>
-      </div>
-      {message && <p className="loading-spinner__message">{message}</p>}
-      <span className="visually-hidden">Loading, please wait</span>
-    </div>
+    <Center p={4}>
+      <VStack spacing={3}>
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size={chakraSize}
+        />
+        {message && (
+          <Text fontSize="sm" color="gray.500" fontWeight="medium">
+            {message}
+          </Text>
+        )}
+      </VStack>
+    </Center>
   );
 }
 

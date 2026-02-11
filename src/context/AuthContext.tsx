@@ -108,11 +108,22 @@ export function AuthProvider({ children }: AuthProviderProps) {
           azure: "azure", // Microsoft Azure AD
         };
 
+      // Construct redirect URL carefully to avoid double slashes
+      const origin = window.location.origin.replace(/\/$/, "");
+      const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+      const redirectUrl = `${origin}${base}/`;
+
+      console.log("--- OAuth Debug ---");
+      console.log("Origin:", origin);
+      console.log("Base URL:", base);
+      console.log("Final Redirect URL:", redirectUrl);
+      console.log("--------------------");
+
       const { error: signInError } = await supabase.auth.signInWithOAuth({
         provider: providerMap[provider],
         options: {
-          // Redirect back to the app after OAuth
-          redirectTo: `${window.location.origin}/`,
+          // Redirect back to the app after OAuth (handles subpaths like /chat-rag-web/)
+          redirectTo: redirectUrl,
           // Request additional scopes for user info
           scopes: provider === "google" ? "email profile" : undefined,
         },
