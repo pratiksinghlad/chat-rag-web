@@ -9,6 +9,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { AuthProvider } from "@/context/AuthContext";
 import Landing from "@/pages/Landing";
 import Home from "@/pages/Home";
+import ChatRag from "@/pages/ChatRag";
 import "@/styles/index.css";
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
 
             {/* Home page (authenticated) */}
             <Route path="/home" element={<Home />} />
+
+            {/* Chat RAG page (authenticated) */}
+            <Route path="/chat" element={<ChatRag />} />
 
             {/* Catch-all redirect */}
             <Route path="*" element={<Navigate to="/" replace />} />

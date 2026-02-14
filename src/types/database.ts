@@ -9,31 +9,44 @@
 export interface Database {
   public: {
     Tables: {
-      // Add your table types here when you have database tables
-      // Example:
-      // profiles: {
-      //   Row: {
-      //     id: string;
-      //     created_at: string;
-      //     email: string;
-      //     full_name: string | null;
-      //     avatar_url: string | null;
-      //   };
-      //   Insert: {
-      //     id: string;
-      //     email: string;
-      //     full_name?: string | null;
-      //     avatar_url?: string | null;
-      //   };
-      //   Update: {
-      //     email?: string;
-      //     full_name?: string | null;
-      //     avatar_url?: string | null;
-      //   };
-      // };
+      documents: {
+        Row: {
+          id: string;
+          content: string;
+          metadata: Record<string, string>;
+          embedding: number[];
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          content: string;
+          metadata?: Record<string, string>;
+          embedding: number[];
+          created_at?: string;
+        };
+        Update: {
+          content?: string;
+          metadata?: Record<string, string>;
+          embedding?: number[];
+        };
+      };
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
+    Functions: {
+      match_documents: {
+        Args: {
+          query_embedding: number[];
+          match_threshold: number;
+          match_count: number;
+        };
+        Returns: {
+          id: string;
+          content: string;
+          metadata: Record<string, string>;
+          similarity: number;
+        }[];
+      };
+    };
     Enums: Record<string, never>;
   };
 }

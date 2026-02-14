@@ -1,8 +1,10 @@
 import { Box, VStack, Button, Icon, useColorModeValue } from "@chakra-ui/react";
+import { Link, useLocation } from "react-router-dom";
 
 export function Sidebar() {
   const bg = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.700");
+  const location = useLocation();
 
   return (
     <Box
@@ -16,11 +18,33 @@ export function Sidebar() {
       display={{ base: "none", md: "block" }}
     >
       <VStack spacing={2} align="stretch" px={4}>
-        <NavItem icon="home" label="Home" isActive />
-        <NavItem icon="chat" label="Chat" />
-        <NavItem icon="document" label="Documents" />
+        <NavItem
+          icon="home"
+          label="Home"
+          to="/home"
+          isActive={location.pathname === "/home"}
+        />
+        <NavItem
+          icon="chat"
+          label="Chat"
+          to="/chat"
+          isActive={location.pathname === "/chat"}
+        />
+        <NavItem
+          icon="document"
+          label="Documents"
+          to="#"
+          isActive={false}
+          isDisabled
+        />
         <Box h="px" bg={borderColor} my={2} />
-        <NavItem icon="settings" label="Settings" />
+        <NavItem
+          icon="settings"
+          label="Settings"
+          to="#"
+          isActive={false}
+          isDisabled
+        />
       </VStack>
     </Box>
   );
@@ -29,13 +53,16 @@ export function Sidebar() {
 function NavItem({
   icon,
   label,
+  to,
   isActive,
+  isDisabled,
 }: {
   icon: string;
   label: string;
-  isActive?: boolean;
+  to: string;
+  isActive: boolean;
+  isDisabled?: boolean;
 }) {
-  // Simple icon mapping for now
   const getIcon = (name: string) => {
     switch (name) {
       case "home":
@@ -68,7 +95,7 @@ function NavItem({
     }
   };
 
-  return (
+  const button = (
     <Button
       variant={isActive ? "solid" : "ghost"}
       colorScheme={isActive ? "blue" : "gray"}
@@ -80,9 +107,21 @@ function NavItem({
         </Icon>
       }
       fontWeight={isActive ? "semibold" : "medium"}
+      isDisabled={isDisabled}
+      opacity={isDisabled ? 0.5 : 1}
     >
       {label}
     </Button>
+  );
+
+  if (isDisabled || to === "#") {
+    return button;
+  }
+
+  return (
+    <Link to={to} style={{ textDecoration: "none" }}>
+      {button}
+    </Link>
   );
 }
 
