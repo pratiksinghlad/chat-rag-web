@@ -7,9 +7,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { AuthProvider } from "@/context/AuthContext";
-import Landing from "@/pages/Landing";
-import Home from "@/pages/Home";
-import ChatRag from "@/pages/ChatRag";
+import LandingPage from "@/pages/LandingPage";
+import ProfilePage from "@/pages/ProfilePage";
+import ChatRagPage from "@/pages/ChatRagPage";
 import "@/styles/index.css";
 
 function App() {
@@ -19,13 +19,13 @@ function App() {
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
             {/* Landing page (login) */}
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={<LandingPage />} />
 
-            {/* Home page (authenticated) */}
-            <Route path="/home" element={<Home />} />
+            {/* Profile page (authenticated) */}
+            <Route path="/profile" element={<ProfilePage />} />
 
             {/* Chat RAG page (authenticated) */}
-            <Route path="/chat" element={<ChatRag />} />
+            <Route path="/chat" element={<ChatRagPage />} />
 
             {/* Catch-all redirect */}
             <Route path="*" element={<Navigate to="/" replace />} />

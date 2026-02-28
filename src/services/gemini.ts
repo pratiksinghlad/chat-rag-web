@@ -37,7 +37,8 @@ function getClient(): GoogleGenerativeAI {
 
 /**
  * Generate a 768-dimension embedding vector for the given text.
- * Uses the `gemini-embedding-001` model.
+ * Uses `text-embedding-004` which natively outputs 768 dims —
+ * no outputDimensionality config required, always matches vector(768) in Supabase.
  */
 export async function generateEmbedding(text: string): Promise<number[]> {
   const model = getClient().getGenerativeModel({

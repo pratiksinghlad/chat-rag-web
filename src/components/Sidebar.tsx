@@ -19,16 +19,16 @@ export function Sidebar() {
     >
       <VStack spacing={2} align="stretch" px={4}>
         <NavItem
-          icon="home"
-          label="Home"
-          to="/home"
-          isActive={location.pathname === "/home"}
-        />
-        <NavItem
           icon="chat"
           label="Chat"
           to="/chat"
           isActive={location.pathname === "/chat"}
+        />
+        <NavItem
+          icon="profile"
+          label="Profile"
+          to="/profile"
+          isActive={location.pathname === "/profile"}
         />
         <NavItem
           icon="document"
@@ -65,9 +65,12 @@ function NavItem({
 }) {
   const getIcon = (name: string) => {
     switch (name) {
-      case "home":
+      case "profile":
         return (
-          <path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+          <path
+            fill="currentColor"
+            d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+          />
         );
       case "chat":
         return (

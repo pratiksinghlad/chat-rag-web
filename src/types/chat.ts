@@ -34,12 +34,15 @@ export interface RagContext {
 
 /** Configuration constants for the RAG pipeline */
 export const RAG_CONFIG = {
-  /** Minimum cosine similarity to consider a document relevant */
-  MATCH_THRESHOLD: 0.5,
+  /** Minimum cosine similarity to consider a document relevant.
+   *  Range: -1.0 (total opposites) to 1.0 (identical).
+   *  -1.0 = return ALL documents (use while testing with dummy seed data).
+   *  For production with real embeddings, raise to 0.3–0.5. */
+  MATCH_THRESHOLD: -1.0,
   /** Maximum number of documents to retrieve */
   MATCH_COUNT: 5,
-  /** Embedding model identifier */
-  EMBEDDING_MODEL: 'gemini-embedding-001',
+  /** Embedding model identifier — text-embedding-004 outputs 768 dims natively */
+  EMBEDDING_MODEL: 'text-embedding-001',
   /** Chat model identifier */
   CHAT_MODEL: 'gemini-3-flash-preview',
 } as const;
